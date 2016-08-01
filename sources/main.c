@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 09:46:34 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 12:43:03 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/14 17:42:39 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,12 @@ int				main(int argc, char **argv, char *env[])
 	UNUSED(argv);
 	g_env = NULL;
 	g_error = NULL;
-	init_set(env);
 	if (init_42sh(env) != 0)
 	{
 		error("42sh: ");
 		exit(EXIT_FAILURE);
 	}
+	init_set(g_env);
 	while (42)
 	{
 		if (main_core() != 0)

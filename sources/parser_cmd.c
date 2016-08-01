@@ -6,12 +6,11 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 10:47:29 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 14:25:56 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/17 13:48:35 by fbonhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core.h>
-#include "set.h"
 
 void				set_input_tab(t_input *input_tab)
 {
@@ -123,9 +122,9 @@ int					parser(char *str)
 	nb_child = 0;
 	parser = g_memory(S_PARSER, 0);
 	parser->allcmd = NULL;
-	if ((exe_funct(str)) == 0)
-		return (0);
 	if (str == NULL)
+		return (0);
+	if (exe_funct(str) == 0)
 		return (0);
 	if (lexer(str) == -1)
 		return (-1);

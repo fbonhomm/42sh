@@ -6,12 +6,11 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:36:30 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 12:46:41 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/14 17:36:42 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core.h>
-#include "set.h"
 
 int				execve_builtin(char **arg_list)
 {

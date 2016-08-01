@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 13:04:03 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/24 16:40:19 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/08/04 18:12:30 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ int			read_heredoc(int fd, char *end)
 {
 	char	*s;
 	int		ret;
-	char	*ptr;
 
 	s = NULL;
 	ft_putstr_fd("Heredoc> ", STDOUT_FILENO);
-	ptr = &(end[5]);
 	while ((ret = get_next_line(STDIN_FILENO, &s)) > 0)
 	{
-		if (ft_strcmp(s, ptr) == 0)
+		if (ft_strcmp(s, end) == 0)
 		{
 			ft_strdel(&s);
 			break ;
@@ -41,7 +39,6 @@ int			read_heredoc(int fd, char *end)
 static int	add_here_document_2(t_allcmd *all)
 {
 	int			fd;
-	char		*str;
 	t_redir		*redir_begin;
 
 	redir_begin = all->cmd->redir;
@@ -49,16 +46,12 @@ static int	add_here_document_2(t_allcmd *all)
 	{
 		if (all->cmd->redir->type == DLESS)
 		{
-			str = ft_strjoin("/tmp/", all->cmd->redir->name_io_file);
-			ft_strdel(&(all->cmd->redir->name_io_file));
-			all->cmd->redir->name_io_file = ft_strdup(str);
-			if ((fd = open(str, O_CREAT | O_WRONLY, 0644)) == -1)
-				ft_strdel(&str);
-			if (read_heredoc(fd, str) == -1)
+			if ((fd = open("/tmp/heredoc", O_CREAT | O_WRONLY, 0644)) == -1)
+				return (-1);
+			if (read_heredoc(fd, all->cmd->redir->name_io_file) == -1)
 				return (-1);
 			if (close(fd) == -1)
 				return (-1);
-			ft_strdel(&str);
 		}
 		all->cmd->redir = all->cmd->redir->next;
 	}
@@ -101,7 +94,7 @@ int			remove_here_document(t_cmd *cmd)
 		{
 			if (tmp->type == DLESS)
 			{
-				if (unlink(tmp->name_io_file) == -1)
+				if (unlink("/tmp/heredoc") == -1)
 				{
 					g_error = "ECLOSE";
 					error("Here Doc");

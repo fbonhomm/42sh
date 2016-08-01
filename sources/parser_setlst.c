@@ -6,13 +6,13 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:51 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 12:53:14 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/14 17:38:33 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core.h>
 
-char		*g_builtin_tab[NBR_BUILTIN + 1] = {
+char		*g_builtin_tab[NBR_BUILTIN] = {
 	"env",
 	"setenv",
 	"unsetenv",

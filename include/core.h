@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:03:12 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 13:31:45 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/14 17:35:16 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@
 # include <errno.h>
 # include "libft.h"
 # include "get_next_line.h"
-# include "set.h"
 # include <parser.h>
 # include <signal.h>
 # include <read.h>
 # include <error.h>
 # include <memory.h>
 # include <sys/ioctl.h>
-
+# include <set.h>
 # ifndef NSIG
 #  ifndef _NSIG
 #   error "NSIG not defined"
@@ -91,8 +90,8 @@
 # define OSH_READ 2
 # define OSH_WRITE 4
 # define OSH_EXEC 8
-# define UNUSED(x) (void)x;
 # define NBR_BUILTIN 9
+# define UNUSED(x) (void)x;
 
 char				*g_error;
 char				**g_env;
@@ -224,7 +223,7 @@ int					signal_init(void);
 int					create_hashtab(void);
 char				*get_path_hash(char *name, t_hash **hash);
 t_lhash				*add_lhash(t_lhash **begin_lhash, char *name, char *path);
-char				*(*g_get_env(char *var))(char *);
+char				*g_get_env(char *var);
 char				*get_shlvl(char *shlvl);
 char				*get_pwd(char *pwd);
 char				*get_oldpwd(char *oldpwd);
@@ -253,5 +252,11 @@ int					is_blank(char c);
 int					is_quote(char c);
 void				error_exec(char *c);
 int					sigint(int mod);
+/*
+**					Job Control
+*/
+int					builtin_jobs(char **cmd);
+int					builtin_bg(char **cmd);
+int					builtin_fg(char **cmd);
 
 #endif

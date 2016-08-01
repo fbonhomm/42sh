@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_job.c                                          :+:      :+:    :+:   */
+/*   ft_str_one_space.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbonhomm <fbonhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/26 22:36:41 by fbonhomm          #+#    #+#             */
-/*   Updated: 2016/06/16 00:23:40 by fbonhomm         ###   ########.fr       */
+/*   Created: 2014/12/01 17:31:56 by fbonhomm          #+#    #+#             */
+/*   Updated: 2016/08/14 18:48:50 by fbonhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "job.h"
+#include "set.h"
 
-void			add_job(t_shell *s, t_job *j)
+char			*ft_str_one_space(char *str)
 {
-	t_job		*tmp;
+	char		**tmp;
+	char		*str1;
 
-	tmp = s->first_job;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = j;
+	tmp = ft_split_mult(2, str, ' ', '\t');
+	str1 = ft_tab_to_str(tmp, ' ');
+	ft_free_array(&tmp);
+	return (str1);
 }

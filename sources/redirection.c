@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:35:12 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 09:58:37 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/07/25 23:00:30 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ int					apply_greatand(t_redir redir, t_input *input_tab)
 	if (close_file_descriptor(&input_tab[io_num]) == -1)
 		return (-1);
 	if (ft_strcmp(redir.name_io_file, "-") != 0)
-	{
-		// close(input_tab[io_file].fd);
 		dup2(input_tab[io_file].fd, input_tab[io_num].fd);
-	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 13:44:49 by ksoulard          #+#    #+#              #
-#    Updated: 2016/07/28 22:16:17 by fbonhomm         ###   ########.fr        #
+#    Updated: 2016/08/17 13:53:03 by fbonhomm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,6 @@ FILE =		main\
 			lib/ft_free_array\
 			lib/ft_free\
 			lib/ft_parameter\
-			lib/ft_perror\
 			lib/ft_print_str\
 			lib/ft_print_str_endl\
 			lib/ft_sort_str\
@@ -120,6 +119,7 @@ FILE =		main\
 			lib/ft_split_mult\
 			lib/ft_sleep\
 			lib/ft_put_array\
+			lib/ft_str_one_space\
 
 SOURCE = 	sources/
 
@@ -141,16 +141,15 @@ $(EXEC):
 		@make -C $(LIB_DIR)
 
 $(NAME): $(OBJ)
-		@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(EXEC) -ltermcap
+		 $(CC) $(FLAGS) -o $(NAME) $(OBJ) $(EXEC) -ltermcap
 
 %.o:	%$(EXT) $(INCLUDE)
-		@$(CC) $(FLAGS) -c $< -o $@ -I libft/ -I$(INCLUDE)
+		 $(CC) $(FLAGS) -c $< -o $@ -I libft -I$(INCLUDE)
 
 clean:
 		rm -rf $(OBJ)
 		(cd $(LIB_DIR) && $(MAKE) $@)
 
 fclean: clean
-		@rm -rf $(NAME)
-		@(cd $(LIB_DIR) && $(MAKE) $@)
+		rm -rf $(NAME)
 re: fclean all

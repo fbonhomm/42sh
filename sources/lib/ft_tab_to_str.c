@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "set.h"
 
 int				count_character_tab(char **tabl)
 {

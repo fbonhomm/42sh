@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_backquote.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduriot <eduriot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:05 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 11:04:33 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/08/15 10:25:04 by eduriot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ char				*exec_backquote(char *tmp)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
-		parser(tmp);
 		free_brain(S_PARSER);
-		exit(EXIT_SUCCESS);
+		exit(parser(tmp) == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
 	}
 	return (tmp2);
 }

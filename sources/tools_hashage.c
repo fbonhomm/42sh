@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:36:08 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/25 18:02:02 by ksoulard         ###   ########.fr       */
+/*   Updated: 2016/08/03 14:16:10 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int			init_hash(char ***paths, int *nb_bin)
 {
 	t_hash			**hash;
 
-	if (ft_strcmp(get_env_val("PATH"), "") == 0)
+	if (!get_env_val("PATH") || ft_strcmp(get_env_val("PATH"), "") == 0)
 		return (-1);
 	if ((*paths = ft_strsplit(get_env_val("PATH"), ':')) == NULL ||
 		g_env == NULL)

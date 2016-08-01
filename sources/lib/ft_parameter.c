@@ -6,18 +6,13 @@
 /*   By: fbonhomm <fbonhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 16:15:44 by fbonhomm          #+#    #+#             */
-/*   Updated: 2016/07/19 16:52:17 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/14 18:52:05 by fbonhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "set.h"
 
-/*
-** - Fonction qui renvoie le nombre de mots separer par les delimiteurs -
-**   PROTOTYPE: int ft_parameter(int nbr(nbr de delimiteur), char *str(ligne), ...(delimiteur))
-*/
-
-int				ft_match(char const *str, int *i,  char *c)
+int				ft_match(char const *str, int *i, char *c)
 {
 	int			index;
 	int			nbr;
@@ -54,7 +49,6 @@ int				ft_count_para(char const *str, char *c)
 	}
 	return (nbr);
 }
-
 
 int				ft_parameter(int nb, char const *str, ...)
 {

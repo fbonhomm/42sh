@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:35:16 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/06/01 17:35:18 by ksoulard         ###   ########.fr       */
+/*   Updated: 2016/08/04 18:16:50 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					apply_dless(t_redir redir, t_input *input_tab)
 	io_num = redir.io_num == -1 ? STDIN_FILENO : redir.io_num;
 	if (close_file_descriptor(&input_tab[io_num]) == -1)
 		return (-1);
-	if (open_file_descriptor(&input_tab[io_num], flags, redir.name_io_file)
+	if (open_file_descriptor(&input_tab[io_num], flags, "/tmp/heredoc")
 		== -1)
 		return (-1);
 	input_tab[io_num].re = 0;

@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:32:46 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 09:40:31 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/08/04 18:22:06 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int					exec_child(t_cmd *cmd, t_input *input_tab)
 		if (dup_fd(cmd->prev->pipe[0], input_tab[0].fd) == -1)
 			return (-1);
 	}
-	if (apply_redirection(cmd->redir, input_tab) == -1)
-		return (-1);
 	if (cmd->next != NULL)
 	{
 		if (dup_fd(cmd->pipe[1], input_tab[1].fd) == -1)
 			return (-1);
 	}
+	if (apply_redirection(cmd->redir, input_tab) == -1)
+		return (-1);
 	if (cmd->bin_type == BIN && parser_path(cmd->bin, '-', S_IXUSR) == -1)
 	{
 		error_exec(cmd->bin);

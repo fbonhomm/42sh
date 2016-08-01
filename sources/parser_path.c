@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:43 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/25 18:36:49 by ksoulard         ###   ########.fr       */
+/*   Updated: 2016/08/03 23:42:34 by killian          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,20 @@ char				*modifpath(char *path)
 	char			*new;
 	char			**tb;
 
-	if (path == NULL)
-		return (NULL);
-	if (parser_path(path, 'd', S_IXUSR) == -1)
+	if (path == NULL || parser_path(path, 'd', S_IXUSR) == -1)
 		return (NULL);
 	if ((tb = ft_strsplit(path, '/')) == NULL)
 	{
 		g_error = EALLOC;
 		return (NULL);
 	}
-	if (path[0] == '/')
-		new = ft_strdup("/");
-	else
-		new = getcwd(NULL, 0);
+	new = path[0] == '/' ? ft_strdup("/") : getcwd(NULL, 0);
 	if (new == NULL)
-		return (parser_path(path, 'd', S_IXUSR) == -1 ? NULL : path);
+	{
+		ft_freetab(tb);
+		g_error = EDIRPRES;
+		return (NULL);
+	}
 	new = modifpath2(tb, new);
 	ft_freetab(tb);
 	if (new == NULL)

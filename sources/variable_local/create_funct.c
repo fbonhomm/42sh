@@ -6,7 +6,7 @@
 /*   By: fbonhomm <fbonhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 18:10:30 by fbonhomm          #+#    #+#             */
-/*   Updated: 2016/07/28 22:56:59 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/16 13:41:37 by fbonhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 char			**g_content;
 
-int				verif_first_acc(void)
+int				verif_first_acc(char *tmp)
 {
-	if (((g_content)[0] && (!(g_content)[1]) &&
-			((!ft_strcmp((g_content)[0], "{")))))
-	{
-		ft_free(&g_content[0]);
+	if (!ft_strcmp(tmp, "{"))
 		return (1);
-	}
 	else
 	{
 		ft_free_array(&g_content);
@@ -30,31 +26,27 @@ int				verif_first_acc(void)
 	}
 }
 
-int				verif_second_acc(int *i)
+int				verif_second_acc(char *tmp)
 {
-	if (((g_content)[*i] && ((ft_strcmp((g_content)[*i], "}") == 0))))
+	if (!ft_strcmp(tmp, "}"))
 	{
-		if ((!(g_content)) || (!(g_content[1])))
+		if ((!(g_content)) || (!(g_content[0])))
 		{
 			ft_free_array(&g_content);
 			ft_putstr_fd("funct: syntax error\n", 2);
 			return (0);
 		}
 		else
-		{
-			ft_free(&g_content[*i]);
 			return (0);
-		}
 	}
 	return (1);
 }
 
 void			add_content(char **tmp, int i)
 {
-	g_content[i] = ft_strepur(2, *tmp, ' ', '\t');
+	g_content[i] = ft_str_one_space(*tmp);
 	g_content[i + 1] = NULL;
 	ft_free(tmp);
-	ft_putstr("funct > ");
 }
 
 void			loop_set_funct(void)
@@ -66,6 +58,7 @@ void			loop_set_funct(void)
 	i[1] = 0;
 	while (42)
 	{
+		ft_putstr("funct > ");
 		if ((get_next_line(STDIN_FILENO, &tmp)) < 0)
 		{
 			ft_free(&tmp);
@@ -73,14 +66,13 @@ void			loop_set_funct(void)
 			ft_putstr_fd("funct: get_next_line error\n", 2);
 			break ;
 		}
-		add_content(&tmp, i[1]);
-		if ((i[0] == 0) && (!(verif_first_acc())))
+		if ((i[0] == 0) && (!(verif_first_acc(tmp))))
 			break ;
-		else
+		if (i[0])
 		{
-			if (!(verif_second_acc(&i[1])))
+			if (!(verif_second_acc(tmp)))
 				break ;
-			i[1]++;
+			add_content(&tmp, i[1]++);
 		}
 		i[0]++;
 	}
@@ -93,8 +85,6 @@ int				create_funct(char *cmd)
 	if (!conform_set_funct(cmd))
 		return (-1);
 	g_content = (char**)malloc(sizeof(char*) * 100);
-	g_content[0] = NULL;
-	ft_putstr("funct > ");
 	key = ft_strndup(cmd, (ft_strlen(cmd) - 2));
 	loop_set_funct();
 	if (g_content && g_content[0])

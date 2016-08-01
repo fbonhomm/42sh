@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_lexer2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduriot <eduriot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:35 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/25 11:10:27 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/08/15 10:32:51 by eduriot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ int				get_word(char *line, char **new_word, int pos)
 	if (ret == -1)
 	{
 		ft_putendl_fd(PEICS2, STDERR_FILENO);
-		*new_word = NULL;
-		return (pos + 1);
+		free_brain(S_PARSER);
+		exit(EXIT_FAILURE);
 	}
 	else if (ret == -2)
 	{
 		ft_putendl_fd(PEICS, STDERR_FILENO);
-		*new_word = NULL;
-		return (pos + 1);
+		free_brain(S_PARSER);
+		exit(EXIT_FAILURE);
 	}
 	if (ret != 0)
 		*new_word = ft_strndup(line, ret);

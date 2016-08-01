@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:35:36 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/25 18:10:52 by ksoulard         ###   ########.fr       */
+/*   Updated: 2016/08/04 19:20:21 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,16 @@ static char		*g_name[5] = {
 	"SHLVL",
 };
 
-static int	apply_modif(char *(f)(char *), int i, char *s)
+static int	apply_modif(char *s)
 {
-	char	*tmp;
-
-	if (s == NULL)
-	{
-		if (expand_env((*f)(g_name[i])) == -1)
-			return (-1);
-		return (0);
-	}
-	tmp = ft_strchr((*f)(g_name[i]), '=');
-	if (tmp == NULL)
-		return (0);
-	if (modif_env(g_name[i], tmp + 1) == -1)
+	if (expand_env(s) == -1)
 		return (-1);
-	if (create_hashtab() == -1)
-	{
-		if (g_error == EALLOC)
-			return (-1);
-		g_error = NULL;
-	}
 	return (0);
 }
 
 int			get_newenv(char **env)
 {
 	char	*s;
-	char	*(*f)(char *);
 	int		i;
 
 	i = 0;
@@ -57,14 +39,18 @@ int			get_newenv(char **env)
 	{
 		if ((s = get_env_val(g_name[i])) == NULL || ft_strcmp(s, "") == 0)
 		{
-			if ((f = g_get_env(g_name[i])) == NULL)
-				break ;
-			if (apply_modif(f, i, s) == -1)
+			if ((s = g_get_env(g_name[i])) == NULL)
+				return (int_error(EALLOC));
+			if (apply_modif(s) == -1)
+			{
+				ft_strdel(&s);
 				return (-1);
+			}
+			ft_strdel(&s);
 		}
 		i++;
 	}
-	return (f == NULL && s == NULL ? -1 : 0);
+	return (0);
 }
 
 char		*get_env_line(char *var)
@@ -78,7 +64,8 @@ char		*get_env_line(char *var)
 	while (g_env[i] != NULL)
 	{
 		s = ft_strchr(g_env[i], '=');
-		if (ft_strncmp(g_env[i], var, s - g_env[i]) == 0)
+		if (ft_strncmp(g_env[i], var, s - g_env[i]) == 0
+			&& ft_strlen(var) == (size_t)(s - g_env[i]))
 			break ;
 		i++;
 	}
@@ -96,7 +83,8 @@ char		*get_env_val(char *var)
 	while (g_env[i] != NULL)
 	{
 		s = ft_strchr(g_env[i], '=');
-		if (ft_strncmp(g_env[i], var, s - g_env[i]) == 0)
+		if (ft_strncmp(g_env[i], var, s - g_env[i]) == 0
+			&& ft_strlen(var) == (size_t)(s - g_env[i]))
 			break ;
 		i++;
 	}

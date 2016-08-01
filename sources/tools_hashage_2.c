@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:36:02 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/25 18:01:46 by ksoulard         ###   ########.fr       */
+/*   Updated: 2016/08/14 17:38:43 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int					count_bin2(char *path, int nb_bin)
 
 	if ((dir = opendir(path)) == NULL)
 	{
-		perror(path);
 		g_error = EOPEN;
 		return (-1);
 	}

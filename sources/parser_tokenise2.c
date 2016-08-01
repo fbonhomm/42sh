@@ -6,7 +6,7 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:34:04 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/28 16:53:21 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/06/01 17:34:05 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*g_ope[12] = {
 	"||",
 	"&&",
 	";",
-	"&"
+	"&",
 };
 
 t_subtok		add_operator(char *operator)

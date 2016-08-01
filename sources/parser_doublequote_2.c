@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_doublequote_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduriot <eduriot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:13 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/26 12:41:31 by eduriot          ###   ########.fr       */
+/*   Updated: 2016/08/15 09:48:43 by eduriot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char				*handle_comp(char *str, int *type, int test)
 	i = 0;
 	while (i < j)
 	{
+		test = 1;
 		if (str[i] == '\\')
 			tmp = handle_backslash(str, &i);
 		else if (str[i] == '$' && str[i + 1])
@@ -47,10 +48,7 @@ char				*handle_comp(char *str, int *type, int test)
 		else
 			set_var(&i, &test);
 		if (test)
-		{
-			ft_putendl(tmp);
 			clean_string(type, &str, &tmp);
-		}
 		j = ft_strlen(str);
 	}
 	return (str);

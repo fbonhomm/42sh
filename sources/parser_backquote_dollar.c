@@ -6,12 +6,11 @@
 /*   By: ksoulard <ksoulard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 17:33:00 by ksoulard          #+#    #+#             */
-/*   Updated: 2016/07/28 16:35:30 by fbonhomm         ###   ########.fr       */
+/*   Updated: 2016/08/04 19:19:32 by ksoulard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core.h>
-#include "set.h"
 
 static int			strstr_begin(char *str1, char *str2)
 {

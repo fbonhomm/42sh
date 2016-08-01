@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "set.h"
 
 static int	ft_nbtab(char const *str, char *c)
 {
