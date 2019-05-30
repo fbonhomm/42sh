@@ -7,5 +7,5 @@ sudo apt-get install libncurses5-dev
 make
 ```
 
-![alt tag ><](presentation.png)
+![alt tag](presentation.png)
 
