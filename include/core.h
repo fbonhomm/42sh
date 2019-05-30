@@ -65,12 +65,12 @@
 #  define _POSIX_OPEN_MAX 20
 # endif
 # ifdef NAME_MAX
-#  define NAME_MAX_MIN _XOPEN_NAME_MAX
+#  define NAME_MAX_MIN PATH_MAX
 # else
 #  define NAME_MAX_MIN _POSIX_NAME_MAX
 # endif
 # ifdef PATH_MAX
-#  define PATH_MAX_MIN _XOPEN_PATH_MAX
+#  define PATH_MAX_MIN PATH_MAX
 # else
 #  define PATH_MAX_MIN _POSIX_PATH_MAX
 # endif
