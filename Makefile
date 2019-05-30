@@ -12,11 +12,11 @@
 
 NAME =		42sh
 
-CC =		gcc
+CC =		clang
 
 EXT =		.c
 
-FLAGS =		-Wall -Wextra -Werror
+FLAGS =		-Wall -Wextra
 
 FILE =		main\
 			tools_env\
